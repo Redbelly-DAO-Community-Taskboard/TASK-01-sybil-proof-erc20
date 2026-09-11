@@ -19,7 +19,7 @@ export const redbellyTestnet = defineChain({
 
 export const config = getDefaultConfig({
   appName: "Sybil-Proof Token Task 1",
-  projectId: "b1e42d0cbe4a1c4890e948839b2e7e18",
+  projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || "",
   chains: [redbellyTestnet],
 });
 

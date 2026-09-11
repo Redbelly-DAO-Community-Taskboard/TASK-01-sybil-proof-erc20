@@ -14,13 +14,13 @@ KYC-gated ERC-20 on **Redbelly Testnet** (chain ID **153**) that blocks unverifi
 
 Community submission for **Redbelly DAO Task 1** - Sybil-Proof ERC-20 (Anti-Bot Standard). UI follows the [DAO Task Board brand kit](https://redbelly-dao-taskboard.vercel.app/brand) (Kinetic Consensus).
 
-> **Docs note:** Full **IndividualOnboardingSDK** embed requires an **Averer developer API key** (per [Eligibility SDK installation](https://docs.redbelly.network/pages/eligibility-sdk/installation/)). We requested the key from Averer Customer Support; until it is issued, the UI uses an SDK-compatible `useHasChainPermission` shim and an onboarding entry point linked to the [Redbelly Access dApp](https://vine.redbelly.network/identity/user-access/) — same permission-check pattern as accepted Task 3. See [`REVIEWER.md`](REVIEWER.md).
+> **Docs note:** Full **IndividualOnboardingSDK** embed requires an **Averer developer API key** (per [Eligibility SDK installation](https://docs.redbelly.network/pages/eligibility-sdk/installation/)). We requested the key from Averer Customer Support; until it is issued, the UI uses an SDK-compatible `useHasChainPermission` shim and an onboarding entry point linked to the [Redbelly Access dApp](https://vine.redbelly.network/identity/user-access/) — same permission-check pattern as accepted Task 3. See the project documentation.
 
 ## Task requirements (quick map)
 
 | Task requirement | Where to verify |
 |------------------|-----------------|
-| Reviewer walkthrough (SDK shim, Averer API key note) | [`REVIEWER.md`](REVIEWER.md) |
+| Reviewer walkthrough (SDK shim, Averer API key note) | the project documentation |
 | OpenZeppelin ERC-20 base | `contracts/SybilProofToken.sol` |
 | `hasChainPermission` on gated actions | `SybilProofToken.sol`, `RedbellyPermissionChecker.sol` |
 | Non-bypassable mint gate | `mint()` / `mintTo()` — KYC on caller/recipient; owner cannot bypass |
@@ -28,7 +28,7 @@ Community submission for **Redbelly DAO Task 1** - Sybil-Proof ERC-20 (Anti-Bot 
 | Configurable transfer gate | `setTransferGated`, toggle tests |
 | Admin update eligibility checker | `setPermissionChecker` |
 | KYC-specific revert messages | `KycVerificationRequiredForMint`, `KycVerificationRequiredForTransfer` |
-| React + IndividualOnboarding + `useHasChainPermission` | `ui/` — shim until Averer API key; see [`REVIEWER.md`](REVIEWER.md) |
+| React + IndividualOnboarding + `useHasChainPermission` | `ui/` — shim until Averer API key; see the project documentation |
 | Unit tests, coverage ≥ 90% | `npm test`, artifact [`docs/coverage/coverage-final.json`](docs/coverage/coverage-final.json) |
 | 5–7 page integration guide | [`docs/guide.md`](docs/guide.md) — incl. §9 Troubleshooting |
 | Testnet deploy + verified source | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md), [live dashboard](https://redbelly-dao-task1.vercel.app/) |
@@ -66,7 +66,7 @@ npm run ui:build
 
 | Document | Description |
 |----------|-------------|
-| [`REVIEWER.md`](REVIEWER.md) | DAO reviewer walkthrough |
+| the project documentation | DAO reviewer walkthrough |
 | [`docs/guide.md`](docs/guide.md) | Integration guide (~6 pages, troubleshooting §9) |
 | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Testnet addresses and demo transactions |
 | [`docs/coverage/`](docs/coverage/) | Committed coverage artifact (100% lines) |
@@ -103,7 +103,7 @@ SybilProofToken.mint / transfer (when gated)
 | SybilProofToken (SYBL) | [`0x28b4841d24cEB8908aB042D14fdC47Ff4F41863d`](https://redbelly.testnet.routescan.io/address/0x28b4841d24cEB8908aB042D14fdC47Ff4F41863d) |
 | RedbellyPermissionChecker | [`0xb8D9334984A070A8073a06EcB89fDe777eA6432C`](https://redbelly.testnet.routescan.io/address/0xb8D9334984A070A8073a06EcB89fDe777eA6432C) |
 
-**Verified demo:** KYC mint OK [`0x54b1660…`](https://redbelly.testnet.routescan.io/tx/0x54b1660effff2f6c51b86f6b4c4f5403dfd5ab21d7e308d5b248f8c27e3b1d87). Reviewer self-test: [live dashboard](https://redbelly-dao-task1.vercel.app/) → mint before/after KYC (see [`REVIEWER.md`](REVIEWER.md#reviewer-self-test-mint-live-dashboard--no-deployer-key)).
+**Verified demo:** KYC mint OK [`0x54b1660…`](https://redbelly.testnet.routescan.io/tx/0x54b1660effff2f6c51b86f6b4c4f5403dfd5ab21d7e308d5b248f8c27e3b1d87). Reviewer self-test: [live dashboard](https://redbelly-dao-task1.vercel.app/) → mint before/after KYC.
 
 Explorer: https://redbelly.testnet.routescan.io
 
